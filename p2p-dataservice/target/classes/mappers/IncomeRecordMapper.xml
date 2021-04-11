@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.p2p.mapper.IncomeRecordMapper">
+  <resultMap id="BaseResultMap" type="com.bjpowernode.p2p.model.IncomeRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="loan_id" jdbcType="INTEGER" property="loanId" />
+    <result column="bid_id" jdbcType="INTEGER" property="bidId" />
+    <result column="bid_money" jdbcType="DECIMAL" property="bidMoney" />
+    <result column="income_date" jdbcType="DATE" property="incomeDate" />
+    <result column="income_money" jdbcType="DECIMAL" property="incomeMoney" />
+    <result column="income_status" jdbcType="INTEGER" property="incomeStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, loan_id, bid_id, bid_money, income_date, income_money, income_status
+  </sql>
+</mapper>

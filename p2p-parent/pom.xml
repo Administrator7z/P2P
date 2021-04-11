@@ -4,17 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!--Spring Boot父依赖-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>com.bjpowernode</groupId>
     <artifactId>p2p-parent</artifactId>
-    <packaging>pom</packaging>
     <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+
+    <!--子模块列表-->
     <modules>
         <module>../p2p-api</module>
         <module>../p2p-common</module>
@@ -30,7 +34,10 @@
         <httpclient.version>4.5.12</httpclient.version>
         <dubbo.version>2.7.8</dubbo.version>
     </properties>
+
+    <!--管理依赖-->
     <dependencyManagement>
+
         <dependencies>
             <!--mybatis依赖-->
             <dependency>
@@ -89,6 +96,4 @@
 
         </dependencies>
     </dependencyManagement>
-
-
 </project>

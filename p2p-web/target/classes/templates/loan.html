@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="散标，理财产品，投资产品，投资理财" />
+    <meta http-equiv="description" content=""/>
+    <script type="text/javascript" language="javascript" th:src="@{/js/jquery-1.7.2.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/trafficStatistics.js}"></script>
+    <script type="text/javascript" language="javascript" th:src="@{/js/huaceng_new.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/share.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <style type="text/css">body{background:#f2f2f2;}</style>
+    <title>散标,互联网金融产品列表-动力金融网,专业的互联网金融信息服务平台</title>
+</head>
+
+<body>
+<div id="header">
+    <div th:include="commons/header :: html"></div>
+</div>
+
+<!--产品列表start-->
+<div id="loanList">
+    <div class="mainBox pro-list-body clearfix" id="rollingLayer">
+        <div class="pro-list">
+            <!--已满标时追加pro-full-->
+            <div th:class="${loanInfo.leftProductMoney == 0 ? 'pro-box pro-full':'pro-box'}" th:each="loanInfo:${infoList}">
+                <div class="pro-top">
+                    <h3 th:text="${loanInfo.productName}">个人信用消费借款</h3>
+                    <p>动力金融网特选小额信贷消费产品</p>
+                </div>
+                <div class="pro-main" style="height:260px;">
+                    <div class="pro-rate">
+                        <div class="rate" th:text="|${loanInfo.rate}%|">5<span>%</span></div>
+                        <h3>历史年化收益率</h3>
+                    </div>
+                    <div class="pro-data clearfix">
+                        <div class="pro-cycle">
+                            <h3>投资周期</h3>
+                            <div class="data" th:text="|${loanInfo.cycle}个月|"><span>9</span>个月</div>
+                        </div>
+                        <div class="pro-money">
+                            <h3>剩余可投金额</h3>
+                            <div class="data">
+                                <span th:text="${loanInfo.leftProductMoney}">140000</span>元
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pro-btn">
+                        <a th:href="@{/loan/loanInfo(loanId=${loanInfo.id})}" class="btn-1">立即投资</a><!--已满标按钮-->
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div style="clear:both"></div>
+            <!--页码 start-->
+            <table class="page_bar">
+                <tbody>
+                <tr>
+                    <td>
+                        <span th:text="|共${pageInfo.totalRecords}条${pageInfo.totalPages}页 当前为第${pageInfo.pageNo}页|">共20条3页　当前为第2页</span>　
+                        <span th:if="${pageInfo.pageNo > 1}">
+					<a id="linkHomePage" th:href="@{/loan/loan(pageNo = 1, type=${type})}">首页</a>
+					<a id="linkPreviousPage" th:href="@{/loan/loan(pageNo = ${pageInfo.pageNo} - 1, type=${type})}">上一页</a>
+				</span>
+                        <span th:if="${pageInfo.pageNo  < pageInfo.totalPages }">
+					<a id="linkNextPage" th:href="@{/loan/loan(pageNo = ${pageInfo.pageNo} + 1, type=${type})}">下一页 </a>
+					<a id="linkLastPage" th:href="@{/loan/loan(pageNo = ${pageInfo.totalPages}, type=${type})}">尾页</a>
+				</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--页码 end-->
+        </div>
+
+        <div class="right-side">
+            <div class="side-box fixed" id="roll" style="top: 0px;">
+                <div id="advertArea"></div>
+                <!--投资排行榜begin-->
+                <div class="system-notice" style="margin-top: 0px;">
+                    <div class="system-tit"><h3>投资排行榜</h3></div>
+                    <ul>
+                        <li><span>1.&nbsp;137******98&nbsp;&nbsp;9000</span></li>
+                        <li><span>2.&nbsp;139******12&nbsp;&nbsp;8000</span></li>
+                        <li><span>3.&nbsp;155******45&nbsp;&nbsp;6000</span></li>
+                        <li><span>4.&nbsp;177******00&nbsp;&nbsp;5500</span></li>
+                        <li><span>5.&nbsp;138******73&nbsp;&nbsp;1000</span></li>
+                    </ul>
+                </div>
+                <!--投资排行榜end-->
+                <!--广告位begin-->
+                <div style="margin-top:20px;"><a th:href="@{/index}"><img th:src="@{/images/ad.jpg}" alt=""/></a></div>
+                <!--广告位end-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--产品列表end-->
+
+<!--页脚start-->
+<div th:include="commons/footer :: html"></div>
+<!--页脚end-->
+</body>
+</html>

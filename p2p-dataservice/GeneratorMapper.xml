@@ -6,7 +6,7 @@
 <generatorConfiguration>
 
     <!-- 指定连接数据库的JDBC驱动包所在位置，指定到你本机的完整路径 -->
-    <classPathEntry location="C:\Z\Maven\apache-maven-3.6.3\new repository\P2PRepository\mysql\mysql-connector-java\5.1.23\mysql-connector-java-5.1.23.jar"/>
+    <classPathEntry location="D:\Maven\MavenRepository\mysql\mysql-connector-java\5.1.23\mysql-connector-java-5.1.23.jar"/>
 
     <!-- 配置table表信息内容体，targetRuntime指定采用MyBatis3的版本 -->
     <context id="tables" targetRuntime="MyBatis3">
@@ -18,25 +18,25 @@
 
         <!-- 配置数据库连接信息 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3308/p2p"
+                        connectionURL="jdbc:mysql://localhost:3306/p2p"
                         userId="root"
-                        password="123456">
+                        password="123">
         </jdbcConnection>
 
         <!-- 生成model类，targetPackage指定model类的包名， targetProject指定生成的model放在eclipse的哪个工程下面-->
         <javaModelGenerator targetPackage="com.bjpowernode.p2p.model"
-                            targetProject="D:\course\23-P2P\04-p2p\code\p2p-api\src\main\java">
+                            targetProject="D:\JavaProjects\P2P\p2p-api\src\main\java">
             <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="false" />
         </javaModelGenerator>
 
         <!-- 生成MyBatis的Mapper.xml文件，targetPackage指定mapper.xml文件的包名， targetProject指定生成的mapper.xml放在eclipse的哪个工程下面 -->
-        <sqlMapGenerator targetPackage="mappers" targetProject="D:\course\23-P2P\04-p2p\code\p2p-dataservice\src\main\resources">
+        <sqlMapGenerator targetPackage="mappers" targetProject="D:\JavaProjects\P2P\p2p-dataservice\src\main\resources">
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
 
         <!-- 生成MyBatis的Mapper接口类文件,targetPackage指定Mapper接口类的包名， targetProject指定生成的Mapper接口放在eclipse的哪个工程下面 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.bjpowernode.p2p.mapper" targetProject="D:\course\23-P2P\04-p2p\code\p2p-dataservice\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.bjpowernode.p2p.mapper" targetProject="D:\JavaProjects\P2P\p2p-dataservice\src\main\java">
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 

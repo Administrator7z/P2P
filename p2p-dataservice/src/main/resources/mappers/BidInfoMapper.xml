@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.p2p.mapper.BidInfoMapper">
+  <resultMap id="BaseResultMap" type="com.bjpowernode.p2p.model.BidInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="loan_id" jdbcType="INTEGER" property="loanId" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="bid_money" jdbcType="DECIMAL" property="bidMoney" />
+    <result column="bid_time" jdbcType="TIMESTAMP" property="bidTime" />
+    <result column="bid_status" jdbcType="INTEGER" property="bidStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, loan_id, uid, bid_money, bid_time, bid_status
+  </sql>
+  <select id="selectSumBidMoney" resultType="java.math.BigDecimal">
+    SELECT sum(bid_money)FROM b_bid_info
+  </select>
+
+
+</mapper>
