@@ -19,6 +19,8 @@ public class LoanInfoController {
     @DubboReference(interfaceClass = LoanInfoService.class ,version = "1.0")
     private LoanInfoService loanInfoService;
 
+
+
     @GetMapping("/loan/loan")
     public String queryPageLoanInfo(Integer type, @RequestParam(value = "pageNo",required = false,defaultValue = "1") Integer pageNo, Model model){
         PageInfo pageInfo = new PageInfo();

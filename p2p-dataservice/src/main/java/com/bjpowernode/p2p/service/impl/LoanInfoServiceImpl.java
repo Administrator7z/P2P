@@ -25,12 +25,9 @@ public class LoanInfoServiceImpl implements LoanInfoService {
     @Override
     public List<LoanInfo> queryPageByType(Integer type, Integer pageNo, Integer pageSize) {
         List<LoanInfo> loanInfoList = new ArrayList<>();
-        if (AppUtil.validProductType(type)){
             pageNo = AppUtil.defaultPageNo(pageNo);
-            pageSize = AppUtil.defaultPageSize(pageSize);
             int offset = ( pageNo - 1 ) * pageSize;
             loanInfoList = loanInfoMapper.selectPageByType(type,offset,pageSize);
-        }
         return loanInfoList;
     }
 
