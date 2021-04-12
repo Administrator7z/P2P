@@ -9,12 +9,25 @@
     <result column="bid_time" jdbcType="TIMESTAMP" property="bidTime" />
     <result column="bid_status" jdbcType="INTEGER" property="bidStatus" />
   </resultMap>
+  <resultMap id="BidUserMap" type="com.bjpowernode.p2p.model.ext.BidUserInfo">
+    <result column="phone" property="phone"/>
+    <result column="bid_money" property="bidMoney"/>
+    <result column="bid_time" property="bidTime"/>
+
+  </resultMap>
   <sql id="Base_Column_List">
     id, loan_id, uid, bid_money, bid_time, bid_status
   </sql>
   <select id="selectSumBidMoney" resultType="java.math.BigDecimal">
     SELECT sum(bid_money)FROM b_bid_info
   </select>
+    <select id="selectBidByLoanId" resultType="com.bjpowernode.p2p.model.ext.BidUserInfo" resultMap="BidUserMap">
+        SELECT u.phone,b.bid_money,b.bid_time
+        from  b_bid_info b INNER JOIN u_user u
+        on b.uid  = u.id
+        where b.loan_id = #{loanId}
+        ORDER BY b.bid_time desc LIMIT 3
+    </select>
 
 
 </mapper>

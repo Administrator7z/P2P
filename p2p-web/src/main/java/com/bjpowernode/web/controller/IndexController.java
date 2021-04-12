@@ -23,7 +23,7 @@ public class IndexController {
     private BidInfoService bidInfoService;
 
 
-    @GetMapping("/index")
+    @GetMapping({"/index","/"})
     public String index(Model model) {
         //历史年化利率
         BigDecimal avgHistoryRate = loanInfoService.avgHistoryRate();

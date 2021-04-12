@@ -34,4 +34,9 @@
   <select id="selectCountRecordsByType" resultType="java.lang.Integer">
     SELECT count(*) from b_loan_info WHERE product_type = #{type}
   </select>
+    <select id="selectByPrimaryKey" resultType="com.bjpowernode.p2p.model.LoanInfo" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List"></include>
+      from b_loan_info
+      where id = #{id}
+    </select>
 </mapper>

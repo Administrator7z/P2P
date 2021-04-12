@@ -21,11 +21,11 @@ public class AppUtil {
         }
         return pageNo;
     }
-//    pageSize
-//    public static int  defaultPageSize(Integer pageSize){
-//        if (pageSize == null || pageSize.intValue() <=0){
-//            pageSize = 9;
-//        }
-//        return pageSize;
-//    }
+    //pageSize
+    public static int  defaultPageSize(Integer pageSize){
+        if (pageSize == null || pageSize.intValue() <=0){
+            pageSize = 9;
+        }
+        return pageSize;
+    }
 }

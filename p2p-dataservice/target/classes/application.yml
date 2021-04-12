@@ -7,6 +7,10 @@ spring:
     url: jdbc:mysql://localhost:3306/p2p
     username: root
     password: 123
+  redis:
+    host: 81.70.162.104
+    port: 6379
+    #password:
 #配置dubbo
 dubbo:
   registry:

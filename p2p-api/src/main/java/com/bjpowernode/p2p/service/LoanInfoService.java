@@ -13,4 +13,6 @@ public interface LoanInfoService {
     List<LoanInfo> queryPageByType(Integer type,Integer pageNo,Integer pageSize);
     //查询某个产品数量
     int queryRecordsByType(Integer type);
+    //按id查询单个产品
+    LoanInfo queryByLoanId(Integer loanId);
 }

@@ -2,6 +2,8 @@ package com.bjpowernode.web.controller;
 
 import com.bjpowernode.common.AppUtil;
 import com.bjpowernode.p2p.model.LoanInfo;
+import com.bjpowernode.p2p.model.ext.BidUserInfo;
+import com.bjpowernode.p2p.service.BidInfoService;
 import com.bjpowernode.p2p.service.LoanInfoService;
 import com.bjpowernode.vo.PageInfo;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -18,6 +20,8 @@ public class LoanInfoController {
 
     @DubboReference(interfaceClass = LoanInfoService.class ,version = "1.0")
     private LoanInfoService loanInfoService;
+    @DubboReference(interfaceClass = BidInfoService.class,version = "1.0")
+    private BidInfoService bidInfoService;
 
 
 
@@ -44,7 +48,15 @@ public class LoanInfoController {
 
     //单个产品的详情
     @GetMapping("/loan/loanInfo")
-    public String loanInfo(@RequestParam("loanId") Integer loanId){
+    public String loanInfo(Integer loanId,Model model){
+        LoanInfo loanInfo = null;
+        List<BidUserInfo> bidUserInfoList= new ArrayList<>();
+        if(loanId != null){
+            loanInfo = loanInfoService.queryByLoanId(loanId);
+            bidUserInfoList  =  bidInfoService.queryBidInfoByLoanId(loanId);
+        }
+        model.addAttribute("loanInfo",loanInfo);
+        model.addAttribute("bidUserInfoList",bidUserInfoList);
         return "loanInfo";
     }
 

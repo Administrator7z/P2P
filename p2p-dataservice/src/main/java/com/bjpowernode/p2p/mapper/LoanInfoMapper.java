@@ -15,4 +15,6 @@ public interface LoanInfoMapper {
     List<LoanInfo> selectPageByType(Integer type,Integer offset,Integer rows);
     //查类型产品的总记录数
     int selectCountRecordsByType(Integer type);
+    //按主键查询商品
+    LoanInfo selectByPrimaryKey(Integer id);
 }
