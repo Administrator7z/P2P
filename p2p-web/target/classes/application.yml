@@ -2,6 +2,7 @@ server:
   port: 8080
   servlet:
     context-path: /p2p
+
 #模板引擎
 spring:
   thymeleaf:
@@ -9,6 +10,9 @@ spring:
     mode: HTML
   application:
     name: p2p2-web
+  redis:
+    host: 81.70.162.104
+    port: 6379
 #dubbo
 dubbo:
   registry:

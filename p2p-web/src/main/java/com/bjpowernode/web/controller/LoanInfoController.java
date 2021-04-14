@@ -1,6 +1,7 @@
 package com.bjpowernode.web.controller;
 
 import com.bjpowernode.common.AppUtil;
+import com.bjpowernode.contans.P2PConstants;
 import com.bjpowernode.p2p.model.LoanInfo;
 import com.bjpowernode.p2p.model.ext.BidUserInfo;
 import com.bjpowernode.p2p.service.BidInfoService;
@@ -32,7 +33,7 @@ public class LoanInfoController {
         if (AppUtil.validProductType(type)){
             int records = loanInfoService.queryRecordsByType(type);
             if (records > 0 ){
-                loanInfoList = loanInfoService.queryPageByType(type,pageNo,9);
+                loanInfoList = loanInfoService.queryPageByType(type,pageNo, P2PConstants.PAGE_SIZE_DEFAULT);
             }
 
             pageInfo.setPageNo(pageNo);

@@ -14,8 +14,22 @@
   <sql id="Base_Column_List">
     id, phone, login_password, name, id_card, add_time, last_login_time, header_image
   </sql>
+  <insert id="insertUserForId" parameterType="com.bjpowernode.p2p.model.User" >
+    <selectKey keyColumn="ct" keyProperty="id" resultType="int" order="AFTER">
+      select LAST_INSERT_ID() as ct
+    </selectKey>
+    insert into u_user(phone,login_password,add_time)
+    values(#{phone},#{loginPassword},#{addTime})
+  </insert>
     <select id="selectCountUsers" resultType="java.lang.Integer">
       select COUNT(phone) from u_user
     </select>
+
+  <!--按手机号查询用户-->
+  <select id="selectByPhone" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from u_user
+    where phone = #{phone}
+  </select>
 
 </mapper>

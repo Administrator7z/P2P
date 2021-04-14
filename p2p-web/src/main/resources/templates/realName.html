@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <script language="javascript" type="text/javascript" th:src="@{/js/jquery-1.7.2.min.js}"></script>
+    <script language="javascript" type="text/javascript" th:src="@{/js/realName.js}"></script>
+    <title>实名认证动力金融网-动力金融网,专业的互联网金融信息服务平台</title>
+</head>
+
+<body>
+<div id="header">
+    <div th:include="commons/header :: html"></div>
+    <div th:include="commons/common :: html"></div>
+</div>
+
+<div class="login-body regBody">
+    <div class="mainBox">
+        <div class="homeWap">
+            <div class="reg-step">
+                <ul class="clearfix">
+                    <li>注册</li>
+                    <li>实名认证</li>
+                    <li class="last">完成</li>
+                </ul>
+            </div>
+            <div class="login-cnt reg-body clearfix">
+                <div class="fl">
+                    <div class="reg-link">暂不认证？<a th:href="@{/index}">跳过</a></div>
+                    <div class="login-form reg-form">
+                        <h2>实名认证</h2>
+
+                        <div class="login-box clearfix" style="z-index:100;">
+                            <label>手机号</label>
+                            <input type="text" id="phone" name="phone" class="input_text" maxlength="11" readonly th:value="${session.app_user?.phone}"/>
+                            <span id="phoneOk" class="ok" style="display:none;"></span>
+                            <div id="phoneErr" class="form-hint" style="display:none;"></div>
+                        </div>
+
+                        <div class="login-box clearfix" style="z-index:100;">
+                            <label>真实姓名</label>
+                            <input type="text" id="realName" name="realName" class="input_text" maxlength="25" placeholder="请输入您的真实姓名" autocomplete="off"/>
+                            <span id="realNameOk" class="ok" style="display:none;"></span>
+                            <div id="realNameErr" class="form-hint" style="display:none;"></div>
+                        </div>
+                        <div class="login-box clearfix " style="z-index:90;">
+                            <label>身份证号</label>
+                            <input type="text" id="idCard" name="idCard" class="input_text" maxlength="20" placeholder="请输入15位或20位身份证号码" autocomplete="off" />
+                            <span id="idCardOk" class="ok" style="display:none;"></span>
+                            <div id="idCardErr" class="form-hint" style="display:none;z-index:90;"></div>
+                        </div>
+
+                        <div class="remember" style="z-index:60;">
+                <span class="on">
+                <input id="agree" name="agree" type="checkbox"/>我已阅读并同意<a
+                        href="javascript:alertBox('mask','agreement');"><font
+                        style="color: red;">《动力金融网&trade;实名认证服务协议》</font></a>
+                </span>
+                        </div>
+                        <div class="bn-login">
+                            <button class="fail" id="btnRegist" disabled >认&nbsp;&nbsp;证</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="reg-right">
+                    <div class="reg-txt clearfix">
+                        <p>
+                            万名用户知心托付<br/>
+                            千万级技术研发投入<br/>
+                        </p>
+                        <p>
+                            12.7%历史年化收益<br/>
+                            亿级注册资本平台
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--页脚start-->
+<div th:include="commons/footer :: html"></div>
+<!--页脚end-->
+
+<!-- 实名认证协议模板start -->
+<!--<span id="includeAgreement">
+    <div th:include="commons/realNameAagreement :: html"></div>
+</span>-->
+<!-- 实名认证协议模板end -->
+
+<!--遮罩层start-->
+<div id="mask" class="dialog-overlay" style="display:none;"></div>
+<!--遮罩层end-->
+</body>
+</html>

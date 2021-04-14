@@ -14,4 +14,9 @@
   <sql id="Base_Column_List">
     id, uid, loan_id, bid_id, bid_money, income_date, income_money, income_status
   </sql>
+  <select id="selectByUid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from u_finance_account
+    where uid=#{uid}
+  </select>
 </mapper>
