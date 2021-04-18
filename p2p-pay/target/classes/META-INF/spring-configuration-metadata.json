@@ -1,0 +1,54 @@
+{
+  "groups": [
+    {
+      "name": "alipay",
+      "type": "com.bjpowernode.pay.config.AlipayConfig",
+      "sourceType": "com.bjpowernode.pay.config.AlipayConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "alipay.alipay-public-key",
+      "type": "java.lang.String",
+      "sourceType": "com.bjpowernode.pay.config.AlipayConfig"
+    },
+    {
+      "name": "alipay.app-id",
+      "type": "java.lang.String",
+      "sourceType": "com.bjpowernode.pay.config.AlipayConfig"
+    },
+    {
+      "name": "alipay.charset",
+      "type": "java.lang.String",
+      "sourceType": "com.bjpowernode.pay.config.AlipayConfig",
+      "defaultValue": "utf-8"
+    },
+    {
+      "name": "alipay.gateway-url",
+      "type": "java.lang.String",
+      "sourceType": "com.bjpowernode.pay.config.AlipayConfig"
+    },
+    {
+      "name": "alipay.merchant-private-key",
+      "type": "java.lang.String",
+      "sourceType": "com.bjpowernode.pay.config.AlipayConfig"
+    },
+    {
+      "name": "alipay.notify-url",
+      "type": "java.lang.String",
+      "sourceType": "com.bjpowernode.pay.config.AlipayConfig"
+    },
+    {
+      "name": "alipay.return-url",
+      "type": "java.lang.String",
+      "sourceType": "com.bjpowernode.pay.config.AlipayConfig"
+    },
+    {
+      "name": "alipay.sign-type",
+      "type": "java.lang.String",
+      "sourceType": "com.bjpowernode.pay.config.AlipayConfig",
+      "defaultValue": "RSA2"
+    }
+  ],
+  "hints": []
+}
