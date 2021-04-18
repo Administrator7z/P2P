@@ -21,7 +21,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bjpowernode.contans.P2PRedis;
-import com.google.gson.JsonObject;
+import com.bjpowernode.web.config.CloudConfig;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -32,6 +32,8 @@ public class Massage106 {
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
+    @Resource
+    private CloudConfig cloudConfig;
 
     public static String calcAuthorization(String source, String secretId, String secretKey, String datetime)
             throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
@@ -63,9 +65,9 @@ public class Massage106 {
     public boolean invokeSmsApi(String phone) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
         boolean sendResult = false;
         //云市场分配的密钥Id
-        String secretId = "AKID3TjV25IvTfqkvnwJki5Fi6j19Q71F9AL8p7A";
+        String secretId = cloudConfig.getSecretId();
         //云市场分配的密钥Key
-        String secretKey = "7JUDxfDcKDCUr1Uu78L44sxIefF2tV1T9QAAdlSS";
+        String secretKey = cloudConfig.getSecretKey();
         String source = "market";
 
         Calendar cd = Calendar.getInstance();

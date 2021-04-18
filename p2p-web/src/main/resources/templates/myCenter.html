@@ -66,36 +66,13 @@
                             <span class="money">投资金额</span>
                             <span class="profit">投资时间</span>
                         </dt>
-                        <dd>
-                            <span class="name">1</span>
-                            <span class="number">个人消费贷</span>
-                            <span class="money">5000.0</span>
-                            <span class="profit">2017-06-12</span>
+                        <dd th:each="bidInfo:${bidInfoList}">
+                            <span class="name" th:text="${bidInfoStat.count}">1</span>
+                            <span class="number" th:text="${bidInfo.name}">个人消费贷</span>
+                            <span class="money" th:text="${bidInfo.bidMoney}">5000.0</span>
+                            <span class="profit" th:text="${#dates.format(bidInfo.bidTime,'yyyy-MM-dd')}">2017-06-12</span>
                         </dd>
-                        <dd>
-                            <span class="name">2</span>
-                            <span class="number">个人消费贷</span>
-                            <span class="money">5500.0</span>
-                            <span class="profit">2017-05-02</span>
-                        </dd>
-                        <dd>
-                            <span class="name">3</span>
-                            <span class="number">个人消费贷</span>
-                            <span class="money">3000.0</span>
-                            <span class="profit">2017-01-01</span>
-                        </dd>
-                        <dd>
-                            <span class="name">4</span>
-                            <span class="number">个人消费贷</span>
-                            <span class="money">3000.0</span>
-                            <span class="profit">2017-01-01</span>
-                        </dd>
-                        <dd>
-                            <span class="name">5</span>
-                            <span class="number">个人消费贷</span>
-                            <span class="money">3000.0</span>
-                            <span class="profit">2017-01-01</span>
-                        </dd>
+
                     </dl>
                     <div class="more-allinvest">
                         <a th:href="@{/loan/myInvest}"><span>查看全部投资</span><i></i></a>
@@ -111,36 +88,13 @@
                         <span class="money">充值金额</span>
                         <span class="money">充值时间</span>
                     </dt>
-                    <dd>
-                        <span class="name">1</span>
-                        <span class="number">支付理财</span>
-                        <span class="money">1000.0</span>
-                        <span class="profit">2017-05-01</span>
+                    <dd th:each="recharge:${rechargeList}" >
+                        <span class="name" th:text="${rechargeStat.count}">1</span>
+                        <span class="number" th:text="${recharge.rechargeDesc}">支付理财</span>
+                        <span class="money" th:text="${recharge.rechargeMoney}">1000.0</span>
+                        <span class="profit" th:text="${#dates.format(recharge.rechargeTime,'yyyy-MM-dd')}">2017-05-01</span>
                     </dd>
-                    <dd>
-                        <span class="name">2</span>
-                        <span class="number">支付理财</span>
-                        <span class="money">1000.0</span>
-                        <span class="profit">2017-04-01</span>
-                    </dd>
-                    <dd>
-                        <span class="name">3</span>
-                        <span class="number">支付理财</span>
-                        <span class="money">1000.0</span>
-                        <span class="profit">2017-03-01</span>
-                    </dd>
-                    <dd>
-                        <span class="name">4</span>
-                        <span class="number">支付理财</span>
-                        <span class="money">1000.0</span>
-                        <span class="profit">2017-03-01</span>
-                    </dd>
-                    <dd>
-                        <span class="name">5</span>
-                        <span class="number">支付理财</span>
-                        <span class="money">1000.0</span>
-                        <span class="profit">2017-03-01</span>
-                    </dd>
+
                 </dl>
                 <div class="more-allinvest">
                     <a th:href="@{/loan/myRecharge}"><span>查看全部充值</span><i></i></a>

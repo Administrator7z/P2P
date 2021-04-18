@@ -22,6 +22,7 @@
     <!--<jsp:include page="commons/header.html"/>-->
     <!--引入公共页面资源：类似<jsp:include/>-->
     <div th:include="commons/header :: html"></div>
+    <div th:include="commons/common :: html"></div>
 </div>
 
 <!--轮播图start-->
@@ -35,18 +36,18 @@
     <div class="registerBody">
         <div class="register-bg"></div>
         <!-- 未登录状态 -->
-        <div class="register">
+        <div class="register" th:if="${session.app_user == null}">
             <h3>动力金融网历史年化收益率</h3>
             <h4><span id="avg" th:text="${avgHistoryRate}">13.8</span> %</h4>
             <div class="bn_register"><a th:href="@{/loan/page/register}" class="btn-1">注册领888大红包</a></div>
-            <div class="login">有账号? <a th:href="@{/loan/page/login}">立即登录</a></div>
+            <div class="login">有账号? <a href="javascript:void(0)" class="btn-login">立即登录</a></div>
         </div>
-        <!-- 登录状态
-        <div class="register welcome">
-            <div class="welcome-txt">欢迎 <span>“<b>张三</b>”</span><br/>来动力金融网投资！</div>
+        <!-- 登录状态 -->
+        <div class="register welcome" th:if="${session.app_user != null}">
+            <div class="welcome-txt">欢迎 <span>“<b th:text="${session.app_user.name == null ? session.app_user.phone : session.app_user.name}">张三</b>”</span><br/>来动力金融网投资！</div>
             <div class="bn_register"><a th:href="@{/loan/myCenter}" class="btn-1">进入我的小金库</a></div>
         </div>
-        -->
+
     </div>
 </div>
 <!--轮播图end-->

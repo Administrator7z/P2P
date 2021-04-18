@@ -15,5 +15,80 @@
     id, uid, recharge_no, recharge_status, recharge_money, recharge_time, recharge_desc, 
     channel
   </sql>
+    <insert id="insertSelective" parameterType="com.bjpowernode.p2p.model.RechargeRecord">
+        insert into b_recharge_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="rechargeNo != null">
+                recharge_no,
+            </if>
+            <if test="rechargeStatus != null">
+                recharge_status,
+            </if>
+            <if test="rechargeMoney != null">
+                recharge_money,
+            </if>
+            <if test="rechargeTime != null">
+                recharge_time,
+            </if>
+            <if test="rechargeDesc != null">
+                recharge_desc,
+            </if>
+            <if test="channel != null">
+                channel,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="rechargeNo != null">
+                #{rechargeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="rechargeStatus != null">
+                #{rechargeStatus,jdbcType=INTEGER},
+            </if>
+            <if test="rechargeMoney != null">
+                #{rechargeMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="rechargeTime != null">
+                #{rechargeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="rechargeDesc != null">
+                #{rechargeDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="channel != null">
+                #{channel,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectPageByUid" resultMap="BaseResultMap">
+    SELECT
+	r.recharge_money,
+	r.recharge_time,
+	CONCAT( ( CASE r.recharge_status
+          	WHEN 0 THEN '充值中'
+						WHEN 1 THEN '充值成功'
+						WHEN 2 THEN '充值失败'
+						ELSE '' END
+					),
+	        '-',
+	        r.recharge_desc ) AS recharge_desc
+    FROM
+        b_recharge_record r
+    WHERE
+        r.uid = #{uid}
+    ORDER BY
+        r.recharge_time DESC
+    LIMIT #{offSet}, #{pageSize}
+  </select>
 
 </mapper>

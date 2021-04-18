@@ -43,28 +43,31 @@ $(function(){
         </ul>
         <div class="login-right">
             	<!-- 未登录start -->
-            	<div class="no-login"><a th:href="@{/loan/page/register}" class="btn-reg">注册</a><a th:href="@{/loan/page/login}" class="btn-login">登录</a></div>
+            	<div class="no-login" th:if="${session.app_user == null}">
+                    <a th:href="@{/loan/page/register}" class="btn-reg">注册</a>
+                    <a href="javascript:void(0)" class="btn-login">登录</a>
+                </div>
             	<!-- 未登录end -->
             	
                 <!--登录后begin-->
-               <!--  
-                <div class="logged">
-                    <div class="userinfo-up">
-                        <a href="loan/myCenter" class="user-phone">13788889999</a><a href="/webPage/account/member_systems.html" class="user-vip" id="member">VIP1</a><i></i>
-                    </div>
-                    <div class="userinfo-drop-down" style="height: 0px;">
-                        <div class="down-bk">
-                            <div class="user-balance">余额：<span id="frame_top">1000.00</span>元</div>
-                            <ul class="quick-entry clearfix">
-                                <li class="icon-recharge"><a href="toRecharge.html"><i></i><span>充值</span></a></li>
-                                <li class="icon-invest" style="margin-left:85px;"><a href="loan/loan"><i></i><span>投资</span></a></li>
-                            </ul>
-                            <div class="enter">进入“<a href="/webPage/account/acc.html?mytime=1501046257129">我的小金库</a>”</div>
-                            <div class="exit"><a th:href="@{/loan/logout}">退出</a></div>
-                        </div>
+
+            <div class="logged" th:if="${session.app_user != null}">
+                <div class="userinfo-up">
+                    <a href="loan/myCenter" class="user-phone" th:text="${session.app_user.phone}">13788889999</a><a href="/webPage/account/member_systems.html" class="user-vip" id="member">VIP999</a><i></i>
+                </div>
+                <div class="userinfo-drop-down" style="height: 0px;">
+                    <div class="down-bk">
+                        <div class="user-balance">余额：<span id="frame_top">1000.00</span>元</div>
+                        <ul class="quick-entry clearfix">
+                            <li class="icon-recharge"><a href="toRecharge.html"><i></i><span>充值</span></a></li>
+                            <li class="icon-invest" style="margin-left:85px;"><a href="loan/loan"><i></i><span>投资</span></a></li>
+                        </ul>
+                        <div class="enter">进入“<a th:href="@{/loan/page/myCenter}">我的小金库</a>”</div>
+                        <div class="exit"><a th:href="@{/loan/logout}">退出</a></div>
                     </div>
                 </div>
-                 -->
+            </div>
+
                 <!--登录后end-->
         </div>
     </div>

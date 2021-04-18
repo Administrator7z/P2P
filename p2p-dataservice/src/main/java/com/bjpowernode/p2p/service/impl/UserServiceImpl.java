@@ -1,5 +1,6 @@
 package com.bjpowernode.p2p.service.impl;
 
+import com.bjpowernode.common.PhoneFormatCheckUtils;
 import com.bjpowernode.contans.P2PRedis;
 import com.bjpowernode.p2p.mapper.FinanceAccountMapper;
 import com.bjpowernode.p2p.mapper.UserMapper;
@@ -7,6 +8,7 @@ import com.bjpowernode.p2p.model.FinanceAccount;
 import com.bjpowernode.p2p.model.User;
 import com.bjpowernode.p2p.service.UserService;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.transaction.annotation.Propagation;
@@ -92,6 +94,19 @@ public class UserServiceImpl implements UserService {
             int  rows  = userMapper.updateUserByRealName(phone,name,idCard);
             if( rows < 1){
                 user = null; //没更新成功
+            }
+        }
+        return user;
+    }
+
+    @Override
+    public User userlogin(String phone, String password) {
+        User user = null;
+        if (PhoneFormatCheckUtils.isPhoneLegal(phone) && password != null){
+            user = userMapper.selectLoginUser(phone,password);
+            if (user != null){
+                user.setLastLoginTime(new Date());
+                userMapper.updateByPrimaryKeySelective(user);
             }
         }
         return user;

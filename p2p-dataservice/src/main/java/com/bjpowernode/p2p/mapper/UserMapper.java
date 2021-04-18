@@ -12,4 +12,8 @@ public interface UserMapper {
     int insertUserForId(User user);
     //实名
     int updateUserByRealName(String phone, String name, String idCard);
+    //登录
+    User selectLoginUser(String phone, String password);
+    //更新最后登录时间
+    int updateByPrimaryKeySelective(User user);
 }

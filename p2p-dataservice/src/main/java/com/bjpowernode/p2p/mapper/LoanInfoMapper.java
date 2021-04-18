@@ -17,4 +17,8 @@ public interface LoanInfoMapper {
     int selectCountRecordsByType(Integer type);
     //按主键查询商品
     LoanInfo selectByPrimaryKey(Integer id);
+    //投资更新剩余可投资金额
+    int updateLeftMoneyByInvest(Integer loanId, BigDecimal money);
+    //满标，更新此产品的满标时间和 status
+    int updateByPrimaryKeySelective(LoanInfo queryInfo);
 }

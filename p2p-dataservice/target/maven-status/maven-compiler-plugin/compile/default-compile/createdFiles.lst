@@ -3,8 +3,10 @@ com\bjpowernode\p2p\mapper\BidInfoMapper.class
 com\bjpowernode\p2p\mapper\LoanInfoMapper.class
 com\bjpowernode\p2p\service\impl\UserServiceImpl.class
 com\bjpowernode\p2p\mapper\UserMapper.class
+com\bjpowernode\p2p\service\impl\FinanceAccountServiceImpl.class
 com\bjpowernode\p2p\service\impl\BidInfoServiceImpl.class
 com\bjpowernode\p2p\mapper\IncomeRecordMapper.class
 com\bjpowernode\dataservice\P2pDataserviceApplication.class
 com\bjpowernode\p2p\service\impl\LoanInfoServiceImpl.class
 com\bjpowernode\p2p\mapper\FinanceAccountMapper.class
+com\bjpowernode\p2p\service\impl\RechargeServiceImpl.class

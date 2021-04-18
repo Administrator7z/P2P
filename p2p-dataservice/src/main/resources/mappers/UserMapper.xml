@@ -25,7 +25,34 @@
   <update id="updateUserByRealName">
     update u_user  set name=#{name},id_card=#{idCard} where phone =#{phone}
   </update>
-    <select id="selectCountUsers" resultType="java.lang.Integer">
+  <update id="updateByPrimaryKeySelective" parameterType="com.bjpowernode.p2p.model.User">
+    update u_user
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headerImage != null">
+        header_image = #{headerImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectCountUsers" resultType="java.lang.Integer">
       select COUNT(phone) from u_user
     </select>
 
@@ -34,6 +61,12 @@
     select <include refid="Base_Column_List" />
     from u_user
     where phone = #{phone}
+  </select>
+  <!--登录-->
+  <select id="selectLoginUser" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from u_user
+    where  phone=#{phone} and login_password = #{password}
   </select>
 
 </mapper>

@@ -34,5 +34,23 @@
       </if>
     </trim>
   </insert>
+  <!--投资，更新金额-->
+  <update id="updateByInvest">
+    update u_finance_account
+     set  available_money = available_money - #{money}
+    where uid=#{uid} and  available_money - #{money} >=0
+  </update>
+  <!--根据uid查询account-->
+  <select id="selectByUid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from u_finance_account
+    where uid=#{uid}
+  </select>
+  <!--查询资金，数据上锁-->
+  <select id="selectAccountForUpdate" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+    from u_finance_account
+    where uid = #{uid} for update
+  </select>
 
 </mapper>

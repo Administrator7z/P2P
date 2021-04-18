@@ -17,15 +17,22 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
+import javax.annotation.Resource;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bjpowernode.web.config.CloudConfig;
 import org.springframework.stereotype.Service;
 import sun.misc.BASE64Encoder;
 
 @Service
 public class IDCard {
+
+
+    @Resource
+    private CloudConfig cloudConfig;
+
     public static String calcAuthorization(String source, String secretId, String secretKey, String datetime)
             throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
         String signStr = "x-date: " + datetime + "\n" + "x-source: " + source;
@@ -56,9 +63,9 @@ public class IDCard {
     public boolean check(String id,String name) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
         boolean sendResult = false;
         //云市场分配的密钥Id
-        String secretId = "AKID3TjV25IvTfqkvnwJki5Fi6j19Q71F9AL8p7A";
+        String secretId = cloudConfig.getSecretId();
         //云市场分配的密钥Key
-        String secretKey = "7JUDxfDcKDCUr1Uu78L44sxIefF2tV1T9QAAdlSS";
+        String secretKey = cloudConfig.getSecretKey();
         String source = "market";
 
         Calendar cd = Calendar.getInstance();

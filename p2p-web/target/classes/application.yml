@@ -9,7 +9,7 @@ spring:
     cache: false
     mode: HTML
   application:
-    name: p2p2-web
+    name: p2p-web
   redis:
     host: 81.70.162.104
     port: 6379
@@ -22,3 +22,7 @@ dubbo:
   consumer:
     retries: 0
     check: false
+
+txcloud:
+  secretId: AKID3TjV25IvTfqkvnwJki5Fi6j19Q71F9AL8p7A
+  secretKey: 7JUDxfDcKDCUr1Uu78L44sxIefF2tV1T9QAAdlSS

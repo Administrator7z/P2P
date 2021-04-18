@@ -5,9 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-    <script type="text/javascript" th:inline="javascript">
-        //上学文，请求的项目名称
-        var contextPath = [[${#request.getContextPath()}]]
-    </script>
+<script type="text/javascript" th:inline="javascript">
+    //上学文，请求的项目名称
+    var contextPath = [[${#request.getContextPath()}]]
+
+
+    $(function(){
+        //定义登录操作
+        $(".btn-login").on("click",function(){
+            var url = window.location.href;
+            window.location.href = contextPath + "/loan/page/login?returnUrl="+url;
+        })
+    })
+</script>
 </body>
 </html>

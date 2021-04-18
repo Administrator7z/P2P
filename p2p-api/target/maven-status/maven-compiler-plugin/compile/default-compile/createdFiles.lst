@@ -1,5 +1,7 @@
-com\bjpowernode\p2p\model\RechargeRecord.class
 com\bjpowernode\p2p\service\UserService.class
+com\bjpowernode\p2p\model\ext\BidLoanInfo.class
+com\bjpowernode\p2p\service\FinanceAccountService.class
+com\bjpowernode\p2p\service\RechargeService.class
 com\bjpowernode\p2p\model\FinanceAccount.class
 com\bjpowernode\p2p\service\BidInfoService.class
 com\bjpowernode\p2p\model\ext\BidUserInfo.class
@@ -8,3 +10,4 @@ com\bjpowernode\p2p\service\LoanInfoService.class
 com\bjpowernode\p2p\model\LoanInfo.class
 com\bjpowernode\p2p\model\BidInfo.class
 com\bjpowernode\p2p\model\IncomeRecord.class
+com\bjpowernode\p2p\model\RechargeRecord.class

@@ -1,8 +1,10 @@
+com\bjpowernode\web\service\Massage106.class
 com\bjpowernode\web\P2pWebApplication.class
 com\bjpowernode\web\service\Express.class
+com\bjpowernode\web\controller\BidInfoController.class
 com\bjpowernode\web\service\TencentMassage.class
 com\bjpowernode\web\controller\UserController.class
 com\bjpowernode\web\service\IDCard.class
 com\bjpowernode\web\controller\IndexController.class
 com\bjpowernode\web\controller\LoanInfoController.class
-Massage106.class
+com\bjpowernode\web\config\CloudConfig.class

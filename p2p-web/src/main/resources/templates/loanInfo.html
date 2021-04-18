@@ -16,6 +16,7 @@
 <div id="header">
     <!--<jsp:include page="commons/header.jsp"/>-->
     <div th:include="commons/header :: html"></div>
+    <div th:include="commons/common :: html"></div>
 </div>
 
 <!--散标投资 begin-->
@@ -123,11 +124,10 @@
                             <dd>资金(元)：
 
                                 <!-- 判断用户是否登录：未登录，显示登录连接 -->
-                                <span style="font-size:18px;color:#ff6161;vertical-align:bottom;"><a
-                                        th:href="@{/loan/page/login}">请登录</a></span>
+                                <span style="font-size:18px;color:#ff6161;vertical-align:bottom;" th:if="${session.app_user == null}"><a href="javascript:void(0)" class="btn-login">请登录</a></span>
 
                                 <!-- 判断用户是否登录：已登录，显示可用余额 -->
-                                <!--<span style="font-size:18px;color:#ff6161;vertical-align:bottom;">1,000,12 元</span>-->
+                                <span style="font-size:18px;color:#ff6161;vertical-align:bottom;"  th:if="${session.app_user !=null}" th:text="${accountMoney}">1,000,12 元</span>
 
                             </dd>
                         </dl>
@@ -170,6 +170,81 @@
 <!--页脚end-->
 
 <script type="text/javascript">
+    //获取产品的信息
+    var loanId = [[${loanInfo.id}]];//产品id
+    var  rate= [[${loanInfo.rate}]];//利率
+    var  cycle = [[${loanInfo.cycle}]];//周期
+    var  ptype = [[${loanInfo.productType}]];//产品类型
+    var  minLimit = [[${loanInfo.bidMinLimit}]];//单笔最小投资金额
+    var  maxLimit = [[${loanInfo.bidMaxLimit}]];//单笔最大投资金额
+    var  leftMoney =  [[${loanInfo.leftProductMoney}]];//剩余可投资金额
+    var  accountMoney = [[${accountMoney}]];//用户金额
+
+
+    function checkMoney(){
+        var tip = $(".max-invest-money");
+        // 获取用户输入金额
+        var money = $.trim( $("#bidMoney").val() );
+
+        if( "" == money){
+            tip.text("请输入有效的金额");
+        } else if( isNaN(money) ){
+            tip.text("请输入正确的金额");
+        } else if( money % 100 != 0){
+            tip.text("投资金额必须是100的整数倍")
+        } else if( parseInt(money) < parseInt(minLimit)){
+            tip.text("最小的投资金额是："+minLimit);
+        } else if( parseInt(money) > parseInt(maxLimit)){
+            tip.text("单笔投资金额不能大于"+maxLimit);
+        } else if( parseInt(money) > parseInt(leftMoney)){
+            tip.text("金额不能大于剩余可投资金额"+leftMoney);
+        } else {
+            //金额是正确的
+            tip.text("");
+            //计算收益（利息）   收益= 投资金额 * 利率* 周期
+
+            var income  = 0;
+            if( ptype == 0 ){ //天为周期
+                income  = parseInt(money) * (rate / 100) * ( cycle / 365 );
+            } else { //月为周期 30 天
+                income = parseInt(money) * (rate /100 ) * ( cycle / 12);
+            }
+            income = Math.round(income * 100) / 100;
+            $("#shouyi").text(income);
+        }
+    }
+
+    function invest(){
+        $("#bidMoney").blur();
+        if( "" == $.trim($(".max-invest-money").text()) ){
+            if( accountMoney == null ){
+                window.location.href = contextPath + "/loan/page/login?returnUrl="+window.location.href;
+            } else {
+                var money = $.trim( $("#bidMoney").val() );
+                $.ajax({
+                    url: contextPath + "/loan/invest",
+                    type:"post",
+                    data:{
+                        money: money,
+                        loanId:loanId
+                    },
+                    success:function(resp ){
+                        if(resp.code == 10000){
+                            //跳到用户中心
+                            window.location.href = contextPath + "/loan/page/myCenter";
+                        } else {
+                            alert( resp.msg);
+                        }
+                    },
+                    error:function(){
+                        alert("请稍候重试")
+                    }
+                })
+            }
+        }
+
+    }
+
     function closeit() {
         $("#failurePayment").hide();
         $("#dialog-overlay1").hide();

@@ -18,7 +18,50 @@
   <sql id="Base_Column_List">
     id, loan_id, uid, bid_money, bid_time, bid_status
   </sql>
-  <select id="selectSumBidMoney" resultType="java.math.BigDecimal">
+    <insert id="insertSelective" parameterType="com.bjpowernode.p2p.model.BidInfo">
+        insert into b_bid_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="loanId != null">
+                loan_id,
+            </if>
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="bidMoney != null">
+                bid_money,
+            </if>
+            <if test="bidTime != null">
+                bid_time,
+            </if>
+            <if test="bidStatus != null">
+                bid_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="loanId != null">
+                #{loanId,jdbcType=INTEGER},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="bidMoney != null">
+                #{bidMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="bidTime != null">
+                #{bidTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bidStatus != null">
+                #{bidStatus,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectSumBidMoney" resultType="java.math.BigDecimal">
     SELECT sum(bid_money)FROM b_bid_info
   </select>
     <select id="selectBidByLoanId" resultType="com.bjpowernode.p2p.model.ext.BidUserInfo" resultMap="BidUserMap">
@@ -28,6 +71,21 @@
         where b.loan_id = #{loanId}
         ORDER BY b.bid_time desc LIMIT 3
     </select>
+  <!-- 某个用户的分页投资记录 -->
+  <select id="selectBidLoanInfo" resultType="com.bjpowernode.p2p.model.ext.BidLoanInfo">
+    SELECT
+        c.product_name AS NAME,
+        b.bid_money AS bidMoney,
+        b.bid_time AS bidTime
+    FROM
+        b_bid_info b
+        JOIN b_loan_info c ON b.loan_id = c.id
+    WHERE
+        b.uid = #{uid}
+    ORDER BY
+        bid_time DESC
+        LIMIT #{offSet},#{pageSize}
+      </select>
 
 
 </mapper>
