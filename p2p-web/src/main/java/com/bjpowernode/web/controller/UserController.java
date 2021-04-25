@@ -17,6 +17,8 @@ import com.bjpowernode.web.service.IDCard;
 import com.bjpowernode.web.service.Massage106;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +55,9 @@ public class UserController {
     @DubboReference(interfaceClass = RechargeService.class, version = "1.0")
     private RechargeService rechargeService;
 
+    //创建日志对象
+    private Logger logger = LoggerFactory.getLogger(IndexController.class);
+
     //进入注册界面
     @GetMapping("/loan/page/register")
     public String login() {
@@ -77,6 +82,7 @@ public class UserController {
                 ro = ResultObject.buildOK("可以注册");
             }
         }
+
         return ro;
     }
 

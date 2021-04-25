@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ scan:开启扫描日志配置文件是否有变化
+ scanPeriod： 每10秒钟，查看当前这个日志配置文件是否有改变，如果有改变，加载改变的内容
+-->
+<configuration scan="true" scanPeriod="10 seconds">
+    <!--输出到控制台
+        appender： 配置输出的日志 使用类（输出日志文件的目的地）
+                   配置日志文件的格式
+
+    -->
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!--此日志 appender 是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <encoder>
+            <!--日志输出的格式-->
+            <pattern>%date [%-5p] %logger{60} %msg%n</pattern>
+            <!-- 设置字符集 -->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>D:/log/web.log</File>
+        <encoder>
+            <pattern>%date [%-5p] %logger{60} %msg%n</pattern>
+        </encoder>
+        <rollingPolicy  class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <fileNamePattern>D:/log/web.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory><!-- 保留 30 天日志 -->
+        </rollingPolicy>
+    </appender>
+
+
+    <!--输出日志的包-->
+    <logger name="com.bjpowernode" level="INFO" />
+    <!--设置根的日志信息-->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

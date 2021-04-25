@@ -12,5 +12,23 @@
 
     <artifactId>p2p-common</artifactId>
 
+    <dependencies>
+
+        <!--http-client-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
+
+        <!--fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+    </dependencies>
+
+
 
 </project>

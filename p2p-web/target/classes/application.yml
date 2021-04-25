@@ -13,6 +13,9 @@ spring:
   redis:
     host: 81.70.162.104
     port: 6379
+  session:
+    store-type: redis
+    timeout: PT60M
 #dubbo
 dubbo:
   registry:
@@ -22,6 +25,7 @@ dubbo:
   consumer:
     retries: 0
     check: false
+#spring session
 
 txcloud:
   secretId: AKID3TjV25IvTfqkvnwJki5Fi6j19Q71F9AL8p7A

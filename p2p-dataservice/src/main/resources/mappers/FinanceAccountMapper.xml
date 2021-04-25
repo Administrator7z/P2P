@@ -40,7 +40,19 @@
      set  available_money = available_money - #{money}
     where uid=#{uid} and  available_money - #{money} >=0
   </update>
-  <!--根据uid查询account-->
+  <!--充值，更新金额-->
+  <update id="updateByRecharge">
+     update u_finance_account
+     set  available_money = available_money + #{rechargeMoney}
+     where uid=#{uid}
+  </update>
+  <!--收益返还，更新金额-->
+  <update id="updateByIncomeBack">
+    update u_finance_account
+    set available_money = available_money + #{bidMoney} + #{incomeMoney}
+    where uid= #{uid}
+  </update>
+    <!--根据uid查询account-->
   <select id="selectByUid" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
     from u_finance_account

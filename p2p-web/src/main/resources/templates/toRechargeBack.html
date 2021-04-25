@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="动力金融网，投资理财，P2P理财，互联网金融，投资理财，理财，网络贷款，个人贷款，小额贷款，网络投融资平台, 网络理财, 固定收益, 100%本息保障" />
+    <meta name="description" content="动力金融网-专业的互联网金融平台！预期年化收益可高达13%，第三方资金托管，屡获大奖。"/>
+    <title>动力金融网-专业的互联网金融公司</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/center.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fund-guanli.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/security.css}"/>
+    <script type="text/javascript" language="javascript" th:src="@{/js/jquery-1.7.2.min.js}"></script>
+    <script type="text/javascript" language="javascript" th:src="@{/js/trafficStatistics.js}"></script>
+</head>
+
+<body>
+<!--页头start-->
+<div id="header">
+    <div th:include="commons/header :: html"></div>
+</div>
+<!--页头end-->
+
+<!-- 二级导航栏start -->
+<div th:include="commons/subNav :: html"></div>
+<!-- 二级导航栏end -->
+
+<!--页中start-->
+<div class="mainBox">
+    <div class="homeWap">
+        <div class="fund-guanli clearfix">
+            <div class="left-nav">
+                <div th:include="commons/leftNav :: html"></div>
+            </div>
+
+            <div class="right-body">
+                <div class="leftTitle"><span class="on">第三方支付平台</span></div>
+
+                <div class="unrecognized" style = "display:block;" id="unrecognized1">
+                    <h3 th:text="${trade_msg}">显示错误信息</h3>
+                    <a class="input_btn" th:href="@{/loan/page/recharge}">再去充值</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--页中end-->
+
+<!--页脚start-->
+<div th:include="commons/footer :: html"></div>
+<!--页脚end-->
+</body>
+</html>

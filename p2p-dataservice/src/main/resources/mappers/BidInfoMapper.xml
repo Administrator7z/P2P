@@ -87,5 +87,13 @@
         LIMIT #{offSet},#{pageSize}
       </select>
 
+    <!--某个产品的所有投资记录-->
+    <select id="selectAllByLoanId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include>
+        from  b_bid_info
+        where loan_id = #{loanId} and bid_status = 1
+        order by id
+    </select>
+
 
 </mapper>

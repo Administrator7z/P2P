@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: p2p-task
+
+dubbo:
+  registry:
+    address: zookeeper://localhost:2181
+  scan:
+    base-packages: com.bjpowernode.p2ptask
+  consumer:
+    check: false
+    retries: 0
+
+
+#调用的支付服务的地址
+pay:
+  alipay:
+    query: http://localhost:9002/pay/alipay/query

@@ -21,4 +21,8 @@ public interface LoanInfoMapper {
     int updateLeftMoneyByInvest(Integer loanId, BigDecimal money);
     //满标，更新此产品的满标时间和 status
     int updateByPrimaryKeySelective(LoanInfo queryInfo);
+    /**
+     * 获取满标的产品
+     */
+    List<LoanInfo> selectManBiaoList();
 }

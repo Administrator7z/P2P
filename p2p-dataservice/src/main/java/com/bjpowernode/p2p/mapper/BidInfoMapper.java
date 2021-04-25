@@ -19,4 +19,10 @@ public interface BidInfoMapper {
     List<BidLoanInfo> selectBidLoanInfo(Integer uid, int offSet, Integer pageSize);
     //创建投资记录
     int insertSelective(BidInfo bidInfo);
+    /**
+     * 某产品的所有投资记录
+     * @param loanId
+     * @return
+     */
+    List<BidInfo> selectAllByLoanId(@Param("loanId") Integer loanId);
 }

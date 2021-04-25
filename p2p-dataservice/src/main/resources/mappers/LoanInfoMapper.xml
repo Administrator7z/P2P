@@ -44,7 +44,14 @@
       from b_loan_info
       where id = #{id}
     </select>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bjpowernode.p2p.model.LoanInfo">
+  <!--获取满标的产品-->
+  <select id="selectManBiaoList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from  b_loan_info
+    where product_status = 1
+    order by id
+  </select>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bjpowernode.p2p.model.LoanInfo">
     update b_loan_info
     <set>
       <if test="productName != null">

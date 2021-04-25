@@ -13,6 +13,8 @@ public class P2PRedis {
 
     //投资排行榜
     public static final String LAON_INVEST_TOP = "LOAN:INVEST:TOP";
+    //支付宝订单号自动增值
     public static final String ALIPAY_OUT_TRAND_NO = "ALIPAY:OUT:TRAND:NO";
-
+    //支付宝订单号列表 zset
+    public static final String ALIPAY_TRANDE_LIST = "ALIPAY:TRANDE:LIST";
 }
